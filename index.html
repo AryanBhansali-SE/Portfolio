@@ -7,29 +7,46 @@
   <meta name="description" content="Dynamic portfolio of Aryan Bhansali." />
   <style>
     :root{
-      --bg: #0b0f1a; --panel: #0f1629; --panel-2:#121a30; --text: #e8edf7; --muted:#aeb7c7; --brand: #6ea8fe; --brand-2: #7ef0f0; --accent: #b388ff;
-      --ok:#6fe3b2; --warn:#ffd166; --danger:#ef476f; --card: rgba(255,255,255,0.06); --border: rgba(255,255,255,0.12);
-      --shadow: 0 10px 30px rgba(0,0,0,0.35); --radius: 18px; --radius-sm: 12px;
+      --bg:#0b0f1a; --panel:#0f1629; --panel-2:#121a30; --text:#e8edf7; --muted:#aeb7c7;
+      --brand:#6ea8fe; --brand-2:#7ef0f0; --accent:#b388ff;
+      --ok:#6fe3b2; --warn:#ffd166; --danger:#ef476f;
+      --card:rgba(255,255,255,0.06); --border:rgba(255,255,255,0.12);
+      --shadow:0 10px 30px rgba(0,0,0,0.35); --radius:18px; --radius-sm:12px;
     }
-    body{margin:0; font-family: ui-sans-serif, system-ui; color:var(--text); background:var(--bg); line-height:1.6; scroll-behavior:smooth;}
-    a{color:var(--brand); text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{width:min(1100px, 92vw); margin-inline:auto}
-    .bg{position:fixed; inset:0; z-index:-2; overflow:hidden; pointer-events:none; background: radial-gradient(60vw 60vw at 10% 10%, rgba(110,168,254,0.22), transparent 60%), radial-gradient(60vw 60vw at 90% 20%, rgba(190,140,255,0.18), transparent 60%), radial-gradient(70vw 60vw at 40% 90%, rgba(126,240,240,0.14), transparent 60%), linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));}
-    .noise{ position:fixed; inset:-100px; z-index:-1; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><filter id="n"><feTurbulence baseFrequency="0.8" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.03"/></svg>'); mix-blend-mode:overlay; }
+    html{height:100%; -webkit-text-size-adjust:100%; text-size-adjust:100%}
+    body{margin:0; font-family:ui-sans-serif,system-ui; color:var(--text); background:var(--bg);
+         line-height:1.6; scroll-behavior:smooth; -webkit-font-smoothing:antialiased}
+    a{color:var(--brand); text-decoration:none} a:hover{text-decoration:underline}
+
+    .container{width:min(1100px,92vw); margin-inline:auto}
+    .bg{position:fixed; inset:0; z-index:-2; overflow:hidden; pointer-events:none;
+        background:
+          radial-gradient(60vw 60vw at 10% 10%, rgba(110,168,254,0.22), transparent 60%),
+          radial-gradient(60vw 60vw at 90% 20%, rgba(190,140,255,0.18), transparent 60%),
+          radial-gradient(70vw 60vw at 40% 90%, rgba(126,240,240,0.14), transparent 60%),
+          linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+    }
+    .noise{position:fixed; inset:-100px; z-index:-1;
+      background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><filter id="n"><feTurbulence baseFrequency="0.8" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.03"/></svg>');
+      mix-blend-mode:overlay;
+    }
+
     .pill{padding:6px 10px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,0.04)}
     .tag{padding:4px 9px; border:1px solid var(--border); border-radius:999px; font-size:12px; color:var(--muted)}
     .muted{color:var(--muted)}
-    .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:20px}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow)}
     .btn{display:inline-flex; gap:8px; align-items:center; border-radius:12px; padding:10px 14px; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); color:var(--text); cursor:pointer}
     .btn.primary{background:linear-gradient(180deg, rgba(110,168,254,0.3), rgba(110,168,254,0.1)); border-color: rgba(110,168,254,0.35)}
+
     header{position:sticky; top:0; backdrop-filter: blur(10px); background:rgba(10,14,24,0.5); border-bottom:1px solid var(--border); z-index:20}
     nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0}
     .brand strong{background:linear-gradient(90deg, var(--brand), var(--accent)); -webkit-background-clip:text; color:transparent}
-    .nav-links a{margin:0 10px; color:var(--muted)}
+    .nav-links{display:flex; gap:10px; overflow-x:auto; white-space:nowrap; -webkit-overflow-scrolling:touch}
+    .nav-links a{margin:0 2px; color:var(--muted); font-weight:600}
     .nav-links a.active{color:var(--text)}
+
     .hero{display:grid; grid-template-columns: 1.2fr 0.8fr; gap:28px; padding:60px 0 30px}
-    .hero .title{font-size:clamp(28px, 6vw, 54px); font-weight:900}
+    .hero .title{font-size:clamp(28px, 6vw, 54px); font-weight:900; text-wrap:balance}
     section{padding:28px 0; scroll-margin-top:90px}
     h2{font-size:22px; margin:0 0 14px 0}
     .timeline:before{content:""; position:absolute; left:12px; top:0; bottom:0; width:2px; background:linear-gradient(transparent, rgba(255,255,255,0.35), transparent)}
@@ -37,6 +54,28 @@
     .tl-item{position:relative; padding-left:38px; margin:10px 0}
     .tl-item:before{content:""; position:absolute; left:5px; top:6px; width:16px; height:16px; border-radius:50%; background:linear-gradient(180deg, var(--brand), var(--accent));}
     footer{padding:40px 0 60px; color:var(--muted); border-top:1px solid var(--border)}
+
+    /* --- mobile polish --- */
+    p, li, h1, h2, h3, h4{hyphens:none; -webkit-hyphens:none; overflow-wrap:anywhere; word-break:normal}
+    @media (max-width:1024px){
+      .hero{grid-template-columns:1fr 1fr}
+      .hero .title{font-size:clamp(26px,4.5vw,36px)}
+    }
+    @media (max-width:780px){
+      .container{width:92vw}
+      .hero{grid-template-columns:1fr; gap:14px}
+      .hero .title{font-size:clamp(22px,8vw,30px); line-height:1.15}
+      .card{padding:14px; border-radius:14px}
+      h2{font-size:18px; margin-bottom:12px}
+      .btn{padding:10px 12px; border-radius:10px}
+      .pill{padding:6px 10px}
+    }
+    @media (max-width:380px){
+      .nav-links a{font-size:13px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *{animation:none !important; transition:none !important}
+    }
   </style>
 </head>
 <body>
@@ -58,24 +97,24 @@
       </nav>
     </div>
   </header>
+
   <main class="container">
-    <section class="hero">
+    <section class="hero" id="about">
       <div>
         <div class="pill">Available for hire</div>
         <h1 class="title" id="heroTitle">Aryan Bhansali — AI & Data Engineer</h1>
         <p class="subtitle" id="heroSub">Analytical and detail-oriented Computer Science student skilled in AI, data engineering, and machine learning. Passionate about building scalable, AI-driven solutions that solve real-world problems.</p>
         <div class="row" style="margin-top:14px">
-        
           <a class="btn primary" id="hireBtn" href="mailto:aryan.bhansali2004@gmail.com">Hire Me</a>
         </div>
       </div>
       <div class="card shadow">
         <h2>At a glance</h2>
         <p id="summaryText">Emerging AI & Data Engineer with hands-on experience designing enterprise-scale search systems. Skilled at building scalable data pipelines, optimizing SQL/BigQuery performance, and applying machine learning to improve relevance and decision-making. Brings a track record of delivering tangible results through applied AI and engineering excellence.</p>
-        <div class="row" id="quickLinks">
+        <div class="row" id="quickLinks" style="display:flex; gap:10px; flex-wrap:wrap">
           <a class="btn" href="mailto:aryan.bhansali2004@gmail.com">Email</a>
-          <a class="btn" target="_blank" href="https://linkedin.com/in/aryanbhansali10">LinkedIn</a>
-          <a class="btn" target="_blank" href="https://github.com/aryanbhansali">GitHub</a>
+          <a class="btn" target="_blank" href="https://linkedin.com/in/aryanbhansali10" rel="noopener">LinkedIn</a>
+          <a class="btn" target="_blank" href="https://github.com/aryanbhansali" rel="noopener">GitHub</a>
         </div>
       </div>
     </section>
@@ -83,7 +122,8 @@
     <section id="about">
       <div class="section-head"><h2>About</h2></div>
       <div class="card">
-        Based in Gurugram, India. B.Tech in Computer Science and Engineering at Manipal University Jaipur. Email: <a href="mailto:aryan.bhansali2004@gmail.com">aryan.bhansali2004@gmail.com</a> | Phone: +91-8700364144
+        Based in Gurugram, India. B.Tech in Computer Science and Engineering at Manipal University Jaipur.
+        Email: <a href="mailto:aryan.bhansali2004@gmail.com">aryan.bhansali2004@gmail.com</a> | Phone: +91-8700364144
       </div>
     </section>
 
@@ -122,19 +162,19 @@
       <div class="card">
         <ul>
           <li><strong>Python</strong></li>
-          <li><strong>BigQuery</strong> </li>
-          <li><strong>SQL</strong> </li>
-          <li><strong>Gradio</strong> </li>
-          <li><strong>Streamlit</strong> </li>
-          <li><strong>Sentence-Transformers</strong> </li>
-          <li><strong>Data Modeling</strong> </li>
-          <li><strong>Google Cloud Platform</strong> </li>
-          <li><strong>JavaScript</strong> </li>
-          <li><strong>HTML/CSS</strong> </li>
-          <li><strong>React </strong> </li>
-          <li><strong>Next.js </strong> </li>
-          <li><strong>Node.js </strong> </li>
-          <li><strong>TensorFlow</strong> </li>
+          <li><strong>BigQuery</strong></li>
+          <li><strong>SQL</strong></li>
+          <li><strong>Gradio</strong></li>
+          <li><strong>Streamlit</strong></li>
+          <li><strong>Sentence-Transformers</strong></li>
+          <li><strong>Data Modeling</strong></li>
+          <li><strong>Google Cloud Platform</strong></li>
+          <li><strong>JavaScript</strong></li>
+          <li><strong>HTML/CSS</strong></li>
+          <li><strong>React</strong></li>
+          <li><strong>Next.js</strong></li>
+          <li><strong>Node.js</strong></li>
+          <li><strong>TensorFlow</strong></li>
           <li><strong>Scikit-learn</strong></li>
           <li><strong>Matplotlib</strong></li>
         </ul>
@@ -154,34 +194,25 @@
         </div>
       </div>
     </section>
-    
 
     <section id="certifications">
       <div class="section-head"><h2>Certifications</h2></div>
       <div class="timeline">
         <div class="tl-item card">
-          <a target="_blank" rel="noopener" href="https://www.credly.com/go/7fWQ0ZZJ">
-            AWS Academy Graduate – Cloud Foundations (2025)
-          </a>
+          <a target="_blank" rel="noopener" href="https://www.credly.com/go/7fWQ0ZZJ">AWS Academy Graduate – Cloud Foundations (2025)</a>
         </div>
         <div class="tl-item card">
-          <a target="_blank" rel="noopener" href="https://www.credly.com/badges/4630553f-6a83-4454-89f4-6def48e44b31/public_url">
-            Cisco CCNA: Switching, Routing & Wireless Essentials (2024)
-          </a>
+          <a target="_blank" rel="noopener" href="https://www.credly.com/badges/4630553f-6a83-4454-89f4-6def48e44b31/public_url">Cisco CCNA: Switching, Routing & Wireless Essentials (2024)</a>
         </div>
         <div class="tl-item card">
-          <a target="_blank" rel="noopener" href="https://www.credly.com/badges/848d004d-242f-4da1-bfcf-7450f8c684a6/public_url">
-            Python Essentials 1 – Cisco Networking Academy (2025)
-          </a>
+          <a target="_blank" rel="noopener" href="https://www.credly.com/badges/848d004d-242f-4da1-bfcf-7450f8c684a6/public_url">Python Essentials 1 – Cisco Networking Academy (2025)</a>
         </div>
         <div class="tl-item card">
-          <a target="_blank" rel="noopener" href="https://www.credly.com/badges/35cbb275-6579-46f6-9c77-157883d2e1e0/public_url">
-            Python Essentials 2 – Cisco Networking Academy (2025)
-          </a>
+          <a target="_blank" rel="noopener" href="https://www.credly.com/badges/35cbb275-6579-46f6-9c77-157883d2e1e0/public_url">Python Essentials 2 – Cisco Networking Academy (2025)</a>
         </div>
       </div>
     </section>
-    
+
     <section id="achievements">
       <div class="section-head"><h2>Achievements & Leadership</h2></div>
       <div class="timeline">
@@ -196,19 +227,50 @@
     <section id="contact">
       <div class="section-head"><h2>Contact</h2></div>
       <div class="card">
-        Reach out via email: <a href="mailto:aryan.bhansali2004@gmail.com">aryan.bhansali2004@gmail.com</a> or connect on <a href="https://linkedin.com/in/aryanbhansali10">LinkedIn</a>.
+        Reach out via email: <a href="mailto:aryan.bhansali2004@gmail.com">aryan.bhansali2004@gmail.com</a> or connect on
+        <a target="_blank" href="https://linkedin.com/in/aryanbhansali10" rel="noopener">LinkedIn</a>.
       </div>
     </section>
   </main>
+
   <footer class="container">
-    <div class="row" style="justify-content:space-between">
+    <div class="row" style="justify-content:space-between; display:flex; gap:10px; flex-wrap:wrap">
       <div>© <span id="year"></span> Aryan Bhansali</div>
       <div class="row" id="footerLinks"></div>
     </div>
   </footer>
+
   <script>
-    $('#year').textContent = new Date().getFullYear();
-    $('#downloadBtn').addEventListener('click', ()=>window.print());
+    // util
+    const $ = (sel, root=document) => root.querySelector(sel);
+
+    // year
+    const y = $('#year'); if (y) y.textContent = new Date().getFullYear();
+
+    // (Removed downloadBtn listener; it wasn't on the page)
+
+    // Prevent iOS auto-hyphenation just in case
+    document.documentElement.style.webkitHyphens = 'none';
+
+    // Keep active nav link in sync while scrolling
+    (function(){
+      const links = Array.from(document.querySelectorAll('.nav-links a'));
+      const sections = links
+        .map(a => document.getElementById(a.getAttribute('href').slice(1)))
+        .filter(Boolean);
+
+      function onScroll(){
+        let best = null, bestDist = Infinity;
+        const y = window.scrollY + 100; // offset for sticky header
+        sections.forEach(sec => {
+          const dist = Math.abs(sec.offsetTop - y);
+          if (dist < bestDist){ bestDist = dist; best = sec; }
+        });
+        links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${best?.id}`));
+      }
+      document.addEventListener('scroll', () => requestAnimationFrame(onScroll), {passive:true});
+      onScroll();
+    })();
   </script>
 </body>
 </html>
