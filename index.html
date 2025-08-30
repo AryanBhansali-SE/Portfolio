@@ -88,7 +88,7 @@
         font-size:13px; position:relative; visibility:hidden;
       }
       .tagline::after{
-        content:"AI/ML Enthusiast | Exploring Internships";
+        content:"Software Engineering Enthusiast | Exploring Internships";
         position:absolute; inset:0; margin:auto; visibility:visible; white-space:normal; text-align:center;
       }
     }
@@ -117,20 +117,20 @@
   <main class="container">
     <section class="hero" id="about">
       <div>
-        <!-- New responsive tagline pill -->
+        <!-- Clean, no-AI tagline -->
         <div class="pill tagline">
-          AI/ML Enthusiast | Actively Exploring Internship Opportunities | Eager to Add Value Through Technology
+          Software Engineering Enthusiast | Actively Exploring Internship Opportunities | Eager to Add Value Through Technology
         </div>
 
-        <h1 class="title" id="heroTitle">Aryan Bhansali — AI & Data Engineer</h1>
-        <p class="subtitle" id="heroSub">Analytical and detail-oriented Computer Science student skilled in AI, data engineering, and machine learning. Passionate about building scalable, AI-driven solutions that solve real-world problems.</p>
+        <h1 class="title" id="heroTitle">Aryan Bhansali — Software Engineer</h1>
+        <p class="subtitle" id="heroSub">Analytical and detail-oriented Computer Science student skilled in software engineering and systems design. Passionate about building reliable, scalable products that solve real-world problems.</p>
         <div class="row" style="margin-top:14px">
           <a class="btn primary" id="hireBtn" href="mailto:aryan.bhansali2004@gmail.com">Hire Me</a>
         </div>
       </div>
       <div class="card shadow">
         <h2>At a glance</h2>
-        <p id="summaryText">Emerging AI & Data Engineer with hands-on experience designing enterprise-scale search systems. Skilled at building scalable data pipelines, optimizing SQL/BigQuery performance, and applying machine learning to improve relevance and decision-making. Brings a track record of delivering tangible results through applied AI and engineering excellence.</p>
+        <p id="summaryText">Emerging <strong>Software Engineer</strong> with hands-on experience delivering enterprise-scale search platforms. Skilled at building scalable services, optimizing SQL/BigQuery performance, and improving relevance and decision-making through solid engineering.</p>
         <div class="row" id="quickLinks" style="display:flex; gap:10px; flex-wrap:wrap">
           <a class="btn" href="mailto:aryan.bhansali2004@gmail.com">Email</a>
           <a class="btn" target="_blank" href="https://linkedin.com/in/aryanbhansali10" rel="noopener">LinkedIn</a>
@@ -154,10 +154,10 @@
           <div><strong>Intern</strong> · Colt Technology Services</div>
           <div class="muted">Jun 2025 – Aug 2025</div>
           <ul>
-            <li>Engineered a BigQuery + Python Gradio data search engine unifying 12 enterprise tables.</li>
-            <li>Deployed keyword + semantic search (vector embeddings) for structured/unstructured retrieval.</li>
-            <li>Optimized pipelines scanning thousands of records, achieving 2–5 min retrievals.</li>
-            <li>Delivered a scalable proof-of-concept integrating data engineering + NLP with the DIO Division.</li>
+            <li>Built a BigQuery + Python Gradio search application unifying 12 enterprise tables.</li>
+            <li>Implemented keyword and semantic search (vector embeddings) for structured/unstructured retrieval.</li>
+            <li>Optimized pipelines scanning thousands of records, achieving 2–5 minute end-to-end retrieval times.</li>
+            <li>Delivered a scalable proof-of-concept integrating backend services and search workflows for the DIO Division.</li>
           </ul>
         </div>
       </div>
@@ -167,11 +167,10 @@
       <div class="section-head"><h2>Projects</h2></div>
       <div class="timeline">
         <div class="tl-item card">
-          <div><strong>Landmark Recognition AI</strong> · Deep Learning (Ongoing)</div>
+          <div><strong>Landmark Recognition System</strong> · Software project (Ongoing)</div>
           <ul>
-            <li>Building a CNN-based recognition system for large-scale landmark datasets.</li>
-            <li>Designed training pipelines for feature extraction, classification, optimization.</li>
-            <li>Conducting fine-tuning to achieve state-of-the-art accuracy.</li>
+            <li>Developing a high-accuracy recognition pipeline for large landmark datasets.</li>
+            <li>Designed training and evaluation workflows, feature extraction, and optimization routines.</li>
           </ul>
         </div>
       </div>
@@ -186,17 +185,13 @@
           <li><strong>SQL</strong></li>
           <li><strong>Gradio</strong></li>
           <li><strong>Streamlit</strong></li>
-          <li><strong>Sentence-Transformers</strong></li>
-          <li><strong>Data Modeling</strong></li>
+          <li><strong>Software Design</strong></li>
           <li><strong>Google Cloud Platform</strong></li>
           <li><strong>JavaScript</strong></li>
           <li><strong>HTML/CSS</strong></li>
           <li><strong>React</strong></li>
           <li><strong>Next.js</strong></li>
           <li><strong>Node.js</strong></li>
-          <li><strong>TensorFlow</strong></li>
-          <li><strong>Scikit-learn</strong></li>
-          <li><strong>Matplotlib</strong></li>
         </ul>
       </div>
     </section>
@@ -261,25 +256,16 @@
   </footer>
 
   <script>
-    // util
     const $ = (sel, root=document) => root.querySelector(sel);
-
-    // year
     const y = $('#year'); if (y) y.textContent = new Date().getFullYear();
-
-    // Prevent iOS auto-hyphenation just in case
     document.documentElement.style.webkitHyphens = 'none';
 
-    // Keep active nav link in sync while scrolling
     (function(){
       const links = Array.from(document.querySelectorAll('.nav-links a'));
-      const sections = links
-        .map(a => document.getElementById(a.getAttribute('href').slice(1)))
-        .filter(Boolean);
-
+      const sections = links.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
       function onScroll(){
         let best = null, bestDist = Infinity;
-        const y = window.scrollY + 100; // offset for sticky header
+        const y = window.scrollY + 100;
         sections.forEach(sec => {
           const dist = Math.abs(sec.offsetTop - y);
           if (dist < bestDist){ bestDist = dist; best = sec; }
