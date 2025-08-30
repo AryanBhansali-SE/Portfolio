@@ -76,6 +76,22 @@
     @media (prefers-reduced-motion:reduce){
       *{animation:none !important; transition:none !important}
     }
+
+    /* === Tagline responsiveness === */
+    .tagline{
+      font-size:15px; line-height:1.4; text-align:center;
+      padding:6px 12px; max-width:95%; margin:6px auto;
+      display:inline-block;
+    }
+    @media (max-width:500px){
+      .tagline{
+        font-size:13px; position:relative; visibility:hidden;
+      }
+      .tagline::after{
+        content:"AI/ML Enthusiast | Exploring Internships";
+        position:absolute; inset:0; margin:auto; visibility:visible; white-space:normal; text-align:center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -101,7 +117,11 @@
   <main class="container">
     <section class="hero" id="about">
       <div>
-    
+        <!-- New responsive tagline pill -->
+        <div class="pill tagline">
+          AI/ML Enthusiast | Actively Exploring Internship Opportunities | Eager to Add Value Through Technology
+        </div>
+
         <h1 class="title" id="heroTitle">Aryan Bhansali — AI & Data Engineer</h1>
         <p class="subtitle" id="heroSub">Analytical and detail-oriented Computer Science student skilled in AI, data engineering, and machine learning. Passionate about building scalable, AI-driven solutions that solve real-world problems.</p>
         <div class="row" style="margin-top:14px">
@@ -246,8 +266,6 @@
 
     // year
     const y = $('#year'); if (y) y.textContent = new Date().getFullYear();
-
-    // (Removed downloadBtn listener; it wasn't on the page)
 
     // Prevent iOS auto-hyphenation just in case
     document.documentElement.style.webkitHyphens = 'none';
