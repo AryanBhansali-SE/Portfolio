@@ -2,7 +2,7 @@ name: Deploy Next.js to GitHub Pages
 
 on:
   push:
-    branches: [nextjs-upgrade] # <— run on your branch
+    branches: [main] # <— run on your branch
   workflow_dispatch:
 
 permissions:
