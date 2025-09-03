@@ -1,9 +1,12 @@
-const isProd = process.env.NODE_ENV === "production";
-const repo = "Portfolio"; // exact repo name
+import type { NextConfig } from 'next';
 
-export default {
-  output: "export",
-  images: { unoptimized: true },
-  basePath: isProd ? `/${repo}` : "",
-  assetPrefix: isProd ? `/${repo}/` : "",
+const isProd = process.env.NODE_ENV === 'production';
+
+const nextConfig: NextConfig = {
+  output: 'export', // ensures static export
+  basePath: isProd ? '/Portfolio' : '',
+  assetPrefix: isProd ? '/Portfolio/' : undefined,
+  images: { unoptimized: true }, // needed for export with next/image
 };
+
+export default nextConfig;
