@@ -1,0 +1,11 @@
+# Node / Next
+web/node_modules/
+web/.next/
+web/.vercel/
+web/.env.local
+
+# Python
+backend/.venv/
+backend/__pycache__/
+backend/*.pyc
+backend/.env
