@@ -136,7 +136,7 @@ export default function HomePage() {
                 Theme
               </button>
               <a
-                href="/aryan_resume.pdf"
+                href="aryan_resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn glass"
@@ -210,7 +210,7 @@ export default function HomePage() {
             >
               <Image
                 className="avatar-large"
-                src="/aryan.jpg"
+                src="aryan.jpg"
                 alt="Portrait of Aryan Bhansali"
                 width={360}
                 height={360}
