@@ -100,7 +100,7 @@ header {
 [data-theme="light"] header {
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.85),
+    rgba(252, 228, 228, 0.85),
     rgba(255, 255, 255, 0.6)
   );
 }
