@@ -2,7 +2,7 @@ name: Deploy Next.js to GitHub Pages
 
 on:
   push:
-    branches: [main] # <— run on your branch
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -19,20 +19,29 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: web
+        working-directory: web # <<--- run inside web/
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
           cache-dependency-path: web/package-lock.json
+
+      # install deps in web/
       - run: npm ci
+
+      # build the Next app
       - run: npm run build
+
+      # export static site (creates web/out)
       - run: npx next export
+
+      # upload the exported site
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: web/out
+          path: web/out # <<--- point to web/out
 
   deploy:
     needs: build
