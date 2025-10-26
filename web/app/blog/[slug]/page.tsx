@@ -8,67 +8,67 @@ import html from "remark-html";
 interface PostData {
   title: string;
   date: string;
-  // Add any other expected frontmatter fields here (e.g., author, tags)
+  // Add any other expected frontmatter fields here
 }
 
-// The function component for the blog post page
+// ------------------------------------------------------------------
+// 1. GENERATE STATIC PARAMS (CRITICAL FOR output: 'export')
+// This function tells Next.js which pages to build during 'npm run build'.
+// ------------------------------------------------------------------
+export async function generateStaticParams() {
+  // NOTE: Adjusting path to correctly find posts inside the web/app/blog/posts folder.
+  const postsDirectory = path.join(process.cwd(), "app", "blog", "posts");
+
+  // Get all file names in the directory
+  const filenames = fs.readdirSync(postsDirectory);
+
+  // Map the filenames to the required { slug: string } format
+  return filenames
+    .filter((filename) => filename.endsWith(".md")) // Only process markdown files
+    .map((filename) => ({
+      // The slug is the file name without the .md extension
+      slug: filename.replace(/\.md$/, ""),
+    }));
+}
+
+// ------------------------------------------------------------------
+// 2. BLOG POST COMPONENT
+// ------------------------------------------------------------------
 export default async function BlogPost({
   params,
 }: {
   params: { slug: string };
 }) {
-  // 1. Read the Markdown file
-  // process.cwd() is the current working directory, typically the root of your project
-  const filePath = path.join(process.cwd(), "posts", `${params.slug}.md`);
+  // Adjusting path to correctly find the specific post file
+  const filePath = path.join(
+    process.cwd(),
+    "app",
+    "blog",
+    "posts",
+    `${params.slug}.md`
+  );
+
+  // Your existing logic starts here:
   const fileContents = fs.readFileSync(filePath, "utf-8");
-
-  // 2. Parse frontmatter (data) and content
   const { data, content } = matter(fileContents);
-  const postData = data as PostData; // Cast data to the defined interface
-
-  // 3. Convert Markdown content to HTML
   const processedContent = await remark().use(html).process(content);
   const contentHtml = processedContent.toString();
+  const postData = data as PostData; // Cast data to the defined interface
 
-  // 4. Render the component with the post data
   return (
     <article className="blog-post-container">
       {/* Set the title dynamically from frontmatter */}
       <h1 className="post-title">{postData.title}</h1>
-      {/* Display the date, you might want to format this with a utility */}
+      {/* Display the date */}
       <p className="post-date">Published on: {postData.date}</p>
 
       <hr />
 
-      {/* The dangerouslySetInnerHTML prop is required to render raw HTML strings.
-        Ensure that the markdown content is trusted, as it can expose XSS vulnerabilities 
-        if it comes from an untrusted source.
-      */}
+      {/* Renders the HTML converted from Markdown */}
       <div
         className="post-content"
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />
-
-      {/* You could add navigation links or a back button here */}
     </article>
   );
 }
-
-// -----------------------------------------------------------------------------
-
-/**
- * OPTIONAL: Add a function to generate static paths (required for Next.js Static Site Generation (SSG))
- * This function tells Next.js which slugs (files) to pre-render at build time.
- * If you're using App Router and not relying on SSG, you might omit this or use dynamic rendering.
- */
-/*
-export async function generateStaticParams() {
-  const postsDirectory = path.join(process.cwd(), 'posts');
-  // Get all filenames in the 'posts' directory
-  const filenames = fs.readdirSync(postsDirectory);
-
-  return filenames.map((filename) => ({
-    slug: filename.replace(/\.md$/, ''), // Extract the slug by removing the '.md' extension
-  }));
-}
-*/
